@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta charset="utf-8">
+   <script src="../../infra/bus.js"></script>
+   <script src="../../infra/basic.js"></script>
+   <script src="../../infra/dcc-common-server-proxy.js"></script>
+   <script src="../../dccs/subscribe-dcc.js"></script>
+   <script src="../../dccs/components/dcc-base.js"></script>
+   <script src="../../dccs/components/dcc-visual.js"></script>
+   <script src="../../dccs/components/dcc-markdown.js"></script>
+   <script src="../../dccs/components/dcc-image.js"></script>
+   <script src="../../dccs/components/dcc-expression.js"></script>
+   <script src="../../dccs/components/dcc-block.js"></script>
+   <script src="../../dccs/components/dcc-trigger.js"></script>
+   <script src="../../dccs/components/dcc-character.js"></script>
+   <script src="../../dccs/components/dcc-lively-dialog.js"></script>
+   <script src="../../dccs/components/dcc-notice-input.js"></script>
+   <script src="../../dccs/components/dcc-state-select.js"></script>
+   <script src="../../dccs/components/dcc-image-marker.js"></script>
+   <script src="../../dccs/components/dcc-styler.js"></script>
+   <script src="../../dccs/components/dcc-entity.js"></script>
+   <script src="../../dccs/components/dcc-input.js"></script>
+   <script src="../../dccs/components/dcc-compute.js"></script>
+   <script src="../../dccs/components/dcc-report.js"></script>
+
+   <script type="text/javascript"  src="src/editor.js"></script>
+
+   <style>
+       #body{
+           background: url("images/background.jpg") no-repeat center center fixed;
+           -webkit-background-size: cover;
+           -moz-background-size: cover;
+           -o-background-size: cover;
+           background-size: cover;
+       }
+    .main{
+        position: absolute;
+        left: 0px;
+        top: 70px;
+        right: 5px;
+        bottom: 5px;
+    }
+    #movel{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+   .pointerDiffR{
+        visibility: hidden;
+        fill:blue;
+        cursor: nwse-resize
+    }
+    .pointerDiffL{
+        visibility: hidden;
+        fill: blue;
+        cursor: nesw-resize
+    }
+    .visible{
+        visibility: visible
+    }
+   </style>
+</head>
+
+
+<body onload="Movel.instance.start()">
+   <script>
+      MessageBus.page = new MessageBus(false);
+      Basic.service.rootPath = "../../";
+   </script>
+   <div class = "main" id = "body" >
+   </div>
+   <div id="dccs">
+     <dcc-trigger label="Circle" action="control/create/circle">
+     </dcc-trigger>
+     <dcc-trigger label="Square" action="control/create/square">
+     </dcc-trigger>
+    <dcc-trigger label="Image" action="control/create/image">
+    </dcc-trigger>
+  </div>
+  <!-- <div>
+    <dcc-trigger label="Square" action="control/create/square">
+    </dcc-trigger>
+  </div> -->
+</body>
+
+</html>
