@@ -128,7 +128,7 @@ class Movel{
             this.fig.addEventListener("mousedown", this._down);
             this.fig.addEventListener("mouseup", this._up);
             this.fig.setAttribute("fill","#ffffff");
-            this.fig.setAttribute("opacity",0.8);
+            this.fig.setAttribute("opacity",0.5);
         }
 
      }
@@ -153,8 +153,8 @@ class Movel{
     }*/
     _createImage() {
         let select = document.querySelector("#choice");
-        let chosen = Number(select.getAttribute("selectedIndex"));
-        console.log(chosen);
+        let chosen = select.selectedIndex;
+        console.log(select.selectedIndex);
         let options = select.options;
         let optionChosen;
         if(chosen !== undefined)
