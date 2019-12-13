@@ -27,57 +27,57 @@
    <script type="text/javascript"  src="src/editor.js"></script>
 
    <style>
-       #body{
+        #body{
            background: url("images/background.jpg") no-repeat center center fixed;
            -webkit-background-size: cover;
            -moz-background-size: cover;
            -o-background-size: cover;
            background-size: cover;
-       }
-    .main{
-        position: absolute;
-        left: 0px;
-        top: 70px;
-        right: 5px;
-        bottom: 5px;
-    }
-    #movel{
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }
-   .pointerDiffR{
-        visibility: hidden;
-        fill:blue;
-        cursor: nwse-resize
-    }
-    .pointerDiffL{
-        visibility: hidden;
-        fill: blue;
-        cursor: nesw-resize
-    }
-    .visible{
-        visibility: visible
-    }
+        }
+        .main{
+            position: absolute;
+            left: 0px;
+            top: 70px;
+            right: 5px;
+            bottom: 5px;
+        }
+        #movel{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .pointerDiffR{
+            visibility: hidden;
+            fill:blue;
+            cursor: nwse-resize
+        }
+        .pointerDiffL{
+            visibility: hidden;
+            fill: blue;
+            cursor: nesw-resize
+        }
+        .visible{
+            visibility: visible
+        }
    </style>
 </head>
 
 
 <body onload="Movel.instance.start()">
-   <script>
-      MessageBus.page = new MessageBus(false);
-      Basic.service.rootPath = "../../";
-   </script>
-   <div class = "main" id = "body" >
-   </div>
-   <div id="dccs">
+    <script>
+        MessageBus.page = new MessageBus(false);
+        Basic.service.rootPath = "../../";
+    </script>
+    <div class = "main" id = "body" >
+    </div>
+    <div id="dccs">
     <select id = "choice">
-        <option value="ellipse"> Ellipse </option>
-        <option value = "rect"> Rectangle</option>
+        <option value = "ellipse"> Ellipse </option>
+        <option value = "rect"> Rectangle </option>
     </select>
-    <dcc-trigger label="Create" action="control/create">
+    <dcc-trigger label = "Create" action = "control/create">
     </dcc-trigger>
-  </div>
+    </div>
   <!-- <div>
     <dcc-trigger label="Square" action="control/create/square">
     </dcc-trigger>
