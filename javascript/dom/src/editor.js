@@ -164,8 +164,13 @@ class Movel{
     }
 
     _areaup(event){
+        console.log("entrei no areaup");
+        
         if(this.controlDown){
             this.resizeBR = false;
+            this.resizeTL = false;
+            this.resizeTR = false;
+            this.resizeBL = false;
         }
         if(this.resizeBL || this.resizeBR || this.resizeTL || this.resizeTR){
     
@@ -178,16 +183,19 @@ class Movel{
         this.resizeTL = false;
         this.resizeTR = false;
         this.resizeBL = false;
-
+        this.follow = false;
         console.log("clique " + event.y);
         
     }
-    _up(event) {
+    _up(event) {                                     //sepa nao precisa dessa
+        console.log("entrei no up");
+        
         this.follow = false;
     }
     _down(event) {
         this.follow = true;
-
+        console.log("entrei no don");
+        
         this.growSquareBR.classList.toggle("visible");
         this.growSquareTL.classList.toggle("visible");
         this.growSquareBL.classList.toggle("visible");
@@ -195,8 +203,12 @@ class Movel{
 
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
+        console.log("dx " + this.position.dx + " dy " + this.position.dy);
+
     }
+
     _move(event) {
+        
         let widthSquare;
         let heightSquare;
 
@@ -210,6 +222,8 @@ class Movel{
         }
         
         if (this.follow && !this.resizeBR && !this.resizeTL && !this.resizeBL && !this.resizeTR) {
+            console.log("hdfugdf");
+            
             if(event.x < 0){
                 event.x = 0;
             }
@@ -217,12 +231,13 @@ class Movel{
                 event.y = 0;
             }
 
-            console.log("movendo");
             
             this.position.tx = event.x - this.position.dx;
             this.position.ty = event.y - this.position.dy;
 
-            console.log("transform no move: " + this.position.tx + " " + this.position.ty);
+            console.log("dx no move " + this.position.dx + " eventx "+ event.x);
+            
+            //console.log("transform no move: " + this.position.tx + " " + this.position.ty);
             
             this.group.setAttribute("transform","translate(" + (this.position.tx) + "," + (this.position.ty) + ")");            
         }
