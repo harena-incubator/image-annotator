@@ -16,3 +16,8 @@
 ## Apresentação
 
    Este é um editor para permitir a anotação de imagens para utilização da plataforma com fins médicos, Harena, como eletrocardiogramas e radiografias. Ele permite que sejam selecionadas áreas específicas de uma certa imagem e a ela sejam adicionadas informações referentes a essa região da imagem, através de texto livre ou, também, de ontologias, como a Mesh. Isso é feito através da seleção interativa de figuras em SVG postas por cima da imagem que se quer anotar, então, através do tamanho da figura e sua posição, é determinada a região de interesse. Faz-se isso com quantas regiões se deseja marcar, então utiliza-se um menu para registrar os dados sobre as regiões selecionadas.
+
+## Escolhendo formas
+
+  A plataforma consiste de uma página da web em HTML5 que contém a imagem que será anotada e alguns menus para a execução das anotações.
+  Para a escolha das formas, no menu superior, existe um menu de seleção que possui algumas opções de formas pré definidas e 
