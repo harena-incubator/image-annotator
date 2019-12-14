@@ -1,4 +1,14 @@
 # Image Annotator
-  A web-based editor to annotate medical images for the Arena project
+  
+  ##Introdução
+    Guia sobre o funcionamento e uso de um editor online para a anotação de imagens através de formas e figuras em SVG
  
-## Table of contents
+  ## Sumário
+   * [Apresentação](#apresentação)
+   * [Escolhendo formas](#escolhendo-formas)
+   * [Anotando](#anotando)
+   * [Armazenamento de anotações](#armazenamento-de-anotações)
+   * [Editando anotações](#editando-anotações)
+   * [Conclusão](#conclusão)
+ 
+ ## Apresentação
