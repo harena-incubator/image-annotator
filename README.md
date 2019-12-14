@@ -46,3 +46,4 @@
 ## Conclusão
   
   Esta ferramente fornece uma forma visual e intuitiva para que médicos e alunos possam anotar imagens médicas ao longo da criação ou execução de casos do Harena com diversos objetivos, como o registro de partes da imagem que são definitivos para o diagnóstico, entre outros.
+  
