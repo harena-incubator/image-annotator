@@ -1,6 +1,6 @@
 # Image Annotator
   
-  ##Introdução
+  ## Introdução
     Guia sobre o funcionamento e uso de um editor online para a anotação de imagens através de formas e figuras em SVG
  
   ## Sumário
