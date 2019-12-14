@@ -12,6 +12,7 @@
   - [Apresentação](#apresenta%c3%a7%c3%a3o)
   - [Escolhendo formas](#escolhendo-formas)
   - [Anotando](#anotando)
+  - [Armazenamento das anotações](#armazenamento-das-anota%c3%a7%c3%b5es)
 
 ## Apresentação
 
@@ -27,4 +28,11 @@
 (*Futuramente*)
   
   Depois de escolhidas as regiões que se quer selecionar, pode-se fazer a anotação. No menu superior existe um botão chamado anotar. Ao clicar nele é aberto um menu de anotações lateral na parte lateral direita da página. Nesse menu existe um menu de seleção, esse menu possui, a princípio, duas opções, texto livre e vocabulário. Ao selecionar texto livre, aparece um campo de digitação onde o usuário pode digitar a informação que queira adicionar. Ao se escolher vocabulário, um novo menu de seleção aparece, ele contém palavras vindas de nossas ontologias que possam ser usadas para registrar os fatos médicos sobre a imagem e o usuário pode escolher uma delas. Logo abaixo, existe um botão adicionar, cada nova informação, seja de vocabulário ou texto livre colocada, ao apertar o botão, ela é adicionada a essa anotação. Para escolher quais regiões marcadas estão associadas a essa anotação o usuário deve clicar sobre cada região marcada, elas ficarão realçadas, para tirar a seleção basta clicar sobre a região que quer remover. Por fim, existe um botão anotar no final do menu, ao clicar nele a anotação e toda informação associada a ela serão salvos e enviados à base de dados.
+
+## Armazenamento das anotações
+
+(*Futuramente*)
+  Quando as anotações são feitas o sistema serializa essas anotações e as salva, depois as envia para a base de dados. Para isso, ele cria uma lista de anotações, cada elemento é uma anotação criada pelo usuário. Esse objeto contém o tipo da anotação (texto livre ou vocabulário), a informação da anotação e uma lista de objetos que são as formas de cada região marcada, contendo o formato, a posição da origem da forma, sua altura e sua largura. Esse lista é transformada numa string JSON e então ela pode ser salva nos cookies do navegador ou então, enviada à base de dados do Harena.
+
+
   
