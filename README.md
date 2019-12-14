@@ -13,6 +13,7 @@
   - [Escolhendo formas](#escolhendo-formas)
   - [Anotando](#anotando)
   - [Armazenamento das anotações](#armazenamento-das-anota%c3%a7%c3%b5es)
+  - [Editando anotações](#editando-anota%c3%a7%c3%b5es)
 
 ## Apresentação
 
@@ -32,7 +33,12 @@
 ## Armazenamento das anotações
 
 (*Futuramente*)
+
   Quando as anotações são feitas o sistema serializa essas anotações e as salva, depois as envia para a base de dados. Para isso, ele cria uma lista de anotações, cada elemento é uma anotação criada pelo usuário. Esse objeto contém o tipo da anotação (texto livre ou vocabulário), a informação da anotação e uma lista de objetos que são as formas de cada região marcada, contendo o formato, a posição da origem da forma, sua altura e sua largura. Esse lista é transformada numa string JSON e então ela pode ser salva nos cookies do navegador ou então, enviada à base de dados do Harena.
 
+## Editando anotações
 
+(*Futuramente*)
+
+  O sistema ao ser reaberto, ou mesmo durante o uso, pode carregar as anotações feitas anteriormente para editá-las ou excluí-las. Para isso, existe no menu lateral, enquanto uma nova anotação não está sendo criada, um menu de seleção que contém a lista de todas as anotações feitas pelo usuário, ao selecionar uma aparecem as informações que foram salvas sobre essa anotação, tipo, conteúdo, regiões. Tipo e conteúdo podem ser alterados ao escolher novas palavras do vocabulário, ou digitando um novo texto livre. É possível marcar novas regiões para essa anotação criando elas com o editor, como descrito anteriormente, também é possível excluir regiões clicando em cima delas, por fim, existe um botão para excluir essa anotação, apagando toda informação associada a ela  e retirando todo vínculo com qualquer região marcada.
   
