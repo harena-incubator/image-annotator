@@ -14,6 +14,7 @@
   - [Anotando](#anotando)
   - [Armazenamento das anotações](#armazenamento-das-anota%c3%a7%c3%b5es)
   - [Editando anotações](#editando-anota%c3%a7%c3%b5es)
+  - [Conclusão](#conclus%c3%a3o)
 
 ## Apresentação
 
@@ -42,3 +43,6 @@
 
   O sistema ao ser reaberto, ou mesmo durante o uso, pode carregar as anotações feitas anteriormente para editá-las ou excluí-las. Para isso, existe no menu lateral, enquanto uma nova anotação não está sendo criada, um menu de seleção que contém a lista de todas as anotações feitas pelo usuário, ao selecionar uma aparecem as informações que foram salvas sobre essa anotação, tipo, conteúdo, regiões. Tipo e conteúdo podem ser alterados ao escolher novas palavras do vocabulário, ou digitando um novo texto livre. É possível marcar novas regiões para essa anotação criando elas com o editor, como descrito anteriormente, também é possível excluir regiões clicando em cima delas, por fim, existe um botão para excluir essa anotação, apagando toda informação associada a ela  e retirando todo vínculo com qualquer região marcada.
   
+## Conclusão
+  
+  Esta ferramente fornece uma forma visual e intuitiva para que médicos e alunos possam anotar imagens médicas ao longo da criação ou execução de casos do Harena com diversos objetivos, como o registro de partes da imagem que são definitivos para o diagnóstico, entre outros.
