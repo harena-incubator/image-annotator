@@ -6,12 +6,12 @@
 
 ## Sumário
 
-* [Apresentação](#apresentação)
-* [Escolhendo formas](#escolhendo-formas)
-* [Anotando](#anotando)
-* [Armazenamento de anotações](#armazenamento-de-anotações)
-* [Editando anotações](#editando-anotações)
-* [Conclusão](#conclusão)
+- [Image Annotator](#image-annotator)
+  - [Introdução](#introdu%c3%a7%c3%a3o)
+  - [Sumário](#sum%c3%a1rio)
+  - [Apresentação](#apresenta%c3%a7%c3%a3o)
+  - [Escolhendo formas](#escolhendo-formas)
+  - [Anotando](#anotando)
 
 ## Apresentação
 
@@ -21,3 +21,10 @@
 
   A plataforma consiste de uma página da web em HTML5 que contém a imagem que será anotada e alguns menus para a execução das anotações.
   Para a escolha das formas, no menu superior, existe um menu de seleção que possui algumas opções de formas pré definidas e (futuramente) a possibilidade de fazer o upload de uma forma desejada. Depois de escolhida a forma, existe um botão, criado a partir de um web component JavaScript, para criar e renderizar a figura. Ao clicar no botão a figura aparece sobre a imagem, então é possível movê-la, segurando o botão esquerdo do mouse sobre a figura. Quando se clica sobre a figura pequenos quadrados aparecem, ao arrastá-los, a figura cresce na diagonal onde este quadrado está, sem manter sua proporção, para isso deve-se redimensioná-la mantendo a tecla ctrl pressionada. Este processo pode ser repetido quantas vezes forem necessárias para marcar todas as regiões desejadas da imagem.
+
+## Anotando
+
+(*Futuramente*)
+  
+  Depois de escolhidas as regiões que se quer selecionar, pode-se fazer a anotação. No menu superior existe um botão chamado anotar. Ao clicar nele é aberto um menu de anotações lateral na parte lateral direita da página. Nesse menu existe um menu de seleção, esse menu possui, a princípio, duas opções, texto livre e vocabulário. Ao selecionar texto livre, aparece um campo de digitação onde o usuário pode digitar a informação que queira adicionar. Ao se escolher vocabulário, um novo menu de seleção aparece, ele contém palavras vindas de nossas ontologias que possam ser usadas para registrar os fatos médicos sobre a imagem e o usuário pode escolher uma delas. Logo abaixo, existe um botão adicionar, cada nova informação, seja de vocabulário ou texto livre colocada, ao apertar o botão, ela é adicionada a essa anotação. Para escolher quais regiões marcadas estão associadas a essa anotação o usuário deve clicar sobre cada região marcada, elas ficarão realçadas, para tirar a seleção basta clicar sobre a região que quer remover. Por fim, existe um botão anotar no final do menu, ao clicar nele a anotação e toda informação associada a ela serão salvos e enviados à base de dados.
+  
