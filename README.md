@@ -15,6 +15,7 @@
   - [Anotando](#anotando)
   - [Armazenamento das anotações](#armazenamento-das-anota%c3%a7%c3%b5es)
   - [Editando anotações](#editando-anota%c3%a7%c3%b5es)
+    - [Por trás dos panos](#por-tr%c3%a1s-dos-panos)
   - [Conclusão](#conclus%c3%a3o)
 
 ## Apresentação
@@ -43,13 +44,17 @@
 
 (*Futuramente*)
 
-  Quando as anotações são feitas o sistema serializa essas anotações e as salva, depois as envia para a base de dados. Para isso, ele cria uma lista de anotações, cada elemento é uma anotação criada pelo usuário. Esse objeto contém o tipo da anotação (texto livre ou vocabulário), a informação da anotação e uma lista de objetos que são as formas de cada região marcada, contendo o formato, a posição da origem da forma, sua altura e sua largura. Esse lista é transformada numa string JSON e então ela pode ser salva nos cookies do navegador ou então, enviada à base de dados do Harena.
+  O sistema possui uma lista de anotações, quando o usuário termina uma anotação é criado um novo obejto para essa lista. Esse obejto possui os seguintes atributos, tipo, conteúdo e regiões. O tipo guarda uma string que contém se essa anotação é texto livre ou se pertence ao vocabulário. O conteúdo guarda o que foi anotado, ou seja, uma String contendo o texto livre digitado pelo usuário ou então a palavra do vocabulário que ele escreveu. Por fim, o atributo regiões é uma outra lista de objetos. Esses objetos representam as formas que marcam as regiões. Eles guardam o formato da figura que está sobre essa região, guardam a posição da origem dessa figura, o vértice superior esquerdo da image, guardam a altura, a largura e a cor da figura. Por fim, esse objeto é adicionado ao final da lista de anotações. Quando o usuário quiser salvar suas anotações sobre essa imagem, ele clica num botão salvar, então essa lista é transformada numa string através do método "JSON.stringify()", é enviada para o Harena através do barramento de mensagens do sistema e pode ser salvo nos cookies do navegador.
 
 ## Editando anotações
 
 (*Futuramente*)
 
   O sistema ao ser reaberto, ou mesmo durante o uso, pode carregar as anotações feitas anteriormente para editá-las ou excluí-las. Para isso, existe no menu lateral, enquanto uma nova anotação não está sendo criada, um menu de seleção que contém a lista de todas as anotações feitas pelo usuário, ao selecionar uma aparecem as informações que foram salvas sobre essa anotação, tipo, conteúdo, regiões. Tipo e conteúdo podem ser alterados ao escolher novas palavras do vocabulário, ou digitando um novo texto livre. É possível marcar novas regiões para essa anotação criando elas com o editor, como descrito anteriormente, também é possível excluir regiões clicando em cima delas, por fim, existe um botão para excluir essa anotação, apagando toda informação associada a ela  e retirando todo vínculo com qualquer região marcada.
+
+### Por trás dos panos
+
+  Quando o sistema é carregado numa imagem já anotada pelo usuário, ele recebe pelo barremento o JSON salvo anteriormente quando a imagem foi anotada, então esse JSON é transformado novamente na lista de anotações que foi gerada pelo sistema anteriormente através do método "JSON.parse()". Então essa lista é lida, anotação por anotação, o conteúdo dela é adicionado ao menu de seleção do menu de edição, e cada figura é renderizada sobre a imagem de fundo de novo. Quando o usuário passa o mouse por cima de uma dessas figuras ela é destacada e aparece uma pequena janela com os detalhes da anotação sobre a qual ela está associada. Quando o usuário edita os detalhes da anotação no menu, eles são alterados na lista de anotações, trocando conteúdo, tipo, adicionando e/ou removendo regiões ou, até mesmo, removendo completamente essa anotação da lista. Quando o usuário termina seu trabalho a lista é novamente salva numa string JSON, enviada ao Harena pelo barramento e pode ser salva de novo nos cookies do navegador.
   
 ## Conclusão
   
