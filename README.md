@@ -2,7 +2,7 @@
   
 ## Introdução
 
-   Guia sobre o funcionamento e uso de um editor online para a anotação de imagens através de formas e figuras em SVG
+   Editor online para a anotação de imagens através de formas e figuras em SVG para uso no Harena. Gabriel de Freitas Garcia - RA 216179
 
 ## Sumário
 
