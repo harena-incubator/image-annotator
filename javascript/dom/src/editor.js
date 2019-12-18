@@ -10,8 +10,6 @@ class Movel{
         this._growTL = this._growTL.bind(this);
         this._growTR = this._growTR.bind(this);
         this._growBL = this._growBL.bind(this);
-       // this._createCircle = this._createCircle.bind(this);
-        //this._createSquare = this._createSquare.bind(this);
         this._createImage = this._createImage.bind(this);
         this.start = this.start.bind(this);
         if(shape !== undefined){
@@ -99,9 +97,6 @@ class Movel{
      }
 
      start() {
-        //MessageBus.ext.subscribe("control/create/circle", this._createCircle);
-        //MessageBus.ext.subscribe("control/create/square", this._createSquare);
-        //MessageBus.ext.subscribe("control/create/image", this._createImage);
         MessageBus.ext.subscribe("control/create",this._createImage);
         Movel.area.setAttribute("id", "area");
         Movel.area.setAttribute("width", "100%");
@@ -109,13 +104,6 @@ class Movel{
         let div = document.querySelector(".main");
         div.appendChild(Movel.area);
     }
-
-   /* _createCircle() {
-        this.circle = new Movel("circle");
-    }
-    _createSquare(){
-        this.square = new Movel("square");
-    }*/
     _createImage() {
         let select = document.querySelector("#choice");
         let chosen = select.selectedIndex;
