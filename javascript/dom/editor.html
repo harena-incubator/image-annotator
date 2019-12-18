@@ -25,6 +25,13 @@
    <script src="../../dccs/components/dcc-report.js"></script>
 
    <script type="text/javascript"  src="src/editor.js"></script>
+   <script type="text/javascript" src = "src/annotation.js"></script>
+   <script>
+       function start(){
+           Movel.instance.start();
+           Annotation.instance.start();
+       }
+   </script>
 
    <style>
         #body{
@@ -73,7 +80,7 @@
 </head>
 
 
-<body onload="Movel.instance.start()">
+<body onload="start()">
     <script>
         MessageBus.page = new MessageBus(false);
         Basic.service.rootPath = "../../";
@@ -89,10 +96,10 @@
     </select>
     <dcc-trigger label = "Create" action = "control/create">
     </dcc-trigger>
+    <dcc-trigger label = "Anotate" action = "control/annotate"></dcc-trigger>
     </div>
     <div class="vertical-menu">
-        <dcc-trigger label = "Anotate" action = "control/anotate">
-        </dcc-trigger>
+        <dcc-trigger label = "Save" action = "control/save"></dcc-trigger>
     </div>
   <!-- <div>
     <dcc-trigger label="Square" action="control/create/square">
