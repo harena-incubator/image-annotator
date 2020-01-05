@@ -19,6 +19,11 @@ class Annotation{
         this.formDiv.setAttribute("id","formDiv");
         this.input = document.createElement("input");
         this.input.setAttribute("type","text");
+        this.input.setAttribute("value","Insira o texto");
+        this.input.setAttribute("class","testes");
+        // this.input.setAttribute("width", String(this.select.offsetWidth) + "px");
+        // console.log(" aaaaaaa "+ this.select.offsetWidth);
+        this.input.setAttribute("onclick", "this.focus();this.select()"); //isso aqui faz selecionar todo o "insira o texto" quando o usuário clicar para ele não ter que apagar na mão
         this.formDiv.appendChild(this.input);
         this.menu.appendChild(this.formDiv);
         this.choiceDiv = document.createElement("div");
@@ -66,5 +71,5 @@ class Annotation{
 
 (function() {
     Annotation.instance = new Annotation();
-    Annotation.vocabulary = ["Pericardits", "Infarct","Arrhythmia"];
+    Annotation.vocabulary = ["Pericardits", "Heart attack","Arrhythmia"];
 })();
