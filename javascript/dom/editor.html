@@ -25,59 +25,92 @@
    <script src="../../dccs/components/dcc-report.js"></script>
 
    <script type="text/javascript"  src="src/editor.js"></script>
+   <script type="text/javascript" src = "src/annotation.js"></script>
+   <script>
+       function start(){
+           Movel.instance.start();
+           Annotation.instance.start();
+       }
+   </script>
 
    <style>
-       #body{
-           background: url("images/background.jpg") no-repeat center center fixed;
-           -webkit-background-size: cover;
-           -moz-background-size: cover;
-           -o-background-size: cover;
-           background-size: cover;
-       }
-    .main{
-        position: absolute;
-        left: 0px;
-        top: 70px;
-        right: 5px;
-        bottom: 5px;
-    }
-    #movel{
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }
-   .pointerDiffR{
-        visibility: hidden;
-        fill:blue;
-        cursor: nwse-resize
-    }
-    .pointerDiffL{
-        visibility: hidden;
-        fill: blue;
-        cursor: nesw-resize
-    }
-    .visible{
-        visibility: visible
-    }
+        #body{
+            background: url("images/background.jpg") no-repeat center center fixed;
+            /* -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover; */
+            background-size: contain;
+            /* min-width: 100%;
+            min-height: 100%; */
+            position: fixed;
+        }
+        .testes{
+            box-shadow: 1px 1px 1px #7dcbff;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 90px;
+        }
+        .main{
+            position: absolute;
+            left: 0px;
+            top: 70px;
+            right: 5px;
+            bottom: 5px;
+        }
+        #movel{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .pointerDiffR{
+            visibility: hidden;
+            fill:blue;
+            cursor: nwse-resize
+        }
+        .pointerDiffL{
+            visibility: hidden;
+            fill: blue;
+            cursor: nesw-resize
+        }
+        .visible{
+            visibility: visible
+        }
+        .vertical-menu {
+            width: 100px; /* Set a width if you like */
+            position: absolute;
+            height: 100%;
+            right: 0;
+            visibility: hidden;
+          }
    </style>
 </head>
 
 
-<body onload="Movel.instance.start()">
-   <script>
-      MessageBus.page = new MessageBus(false);
-      Basic.service.rootPath = "../../";
-   </script>
-   <div class = "main" id = "body" >
-   </div>
-   <div id="dccs">
-     <dcc-trigger label="Circle" action="control/create/circle">
-     </dcc-trigger>
-     <dcc-trigger label="Square" action="control/create/square">
-     </dcc-trigger>
-    <dcc-trigger label="Image" action="control/create/image">
+<body onload="start()">
+    <script>
+        MessageBus.page = new MessageBus(false);
+        Basic.service.rootPath = "../../";
+    </script>
+    <div class = "main" id = "body" >
+    </div>
+    <div id="dccs">
+    <select id = "choice">
+        <option value = "ellipse"> Ellipse </option>
+        <option value = "rect"> Rectangle </option>
+        <option value="star"> 5 Star </option>
+        <option value="davidStar"> 6 Star </option>
+    </select>
+    <dcc-trigger label = "Create" action = "control/create">
     </dcc-trigger>
-  </div>
+    <dcc-trigger label = "Anotate" action = "control/annotate"></dcc-trigger>
+    </div>
+    <div class="vertical-menu">
+        <select name="type" id="typeChoice">
+            <option value="freeText"> Free text </option>
+            <option value = "vocabulary">Vocabulary </option>
+        </select>
+        <dcc-trigger id = "save" label = "Save" action = "control/save"></dcc-trigger>
+    </div>
   <!-- <div>
     <dcc-trigger label="Square" action="control/create/square">
     </dcc-trigger>

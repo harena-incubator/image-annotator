@@ -10,8 +10,6 @@ class Movel{
         this._growTL = this._growTL.bind(this);
         this._growTR = this._growTR.bind(this);
         this._growBL = this._growBL.bind(this);
-        this._createCircle = this._createCircle.bind(this);
-        this._createSquare = this._createSquare.bind(this);
         this._createImage = this._createImage.bind(this);
         this.start = this.start.bind(this);
         if(shape !== undefined){
@@ -82,70 +80,50 @@ class Movel{
             this.resizeBL = false;
             this.growSquareBL.addEventListener("mousedown", this._growBL);
             this.growSquareBL.addEventListener("mouseup", this._areaup);
-            if(shape === "circle"){
-                this.fig = document.createElementNS(SVG, "ellipse");
-                this.fig.setAttribute("id", "circle");
-                let color = this._chooseColor();
-                this.fig.setAttribute("fill", color);
-                this.fig.setAttribute("rx", "50");
-                this.fig.setAttribute("ry", "50");
-                this.fig.setAttribute("cx", 50);
-                this.fig.setAttribute("cy", 50);
-                this.aux.appendChild(this.fig);
-                this.fig.addEventListener("mousedown", this._down);
-                this.fig.addEventListener("mouseup", this._up);
-            }else if(shape === "square"){
-                this.fig = document.createElementNS(SVG, "rect");
-                this.fig.setAttribute("id", "square");
-                this.fig.setAttribute("width", 100);
-                this.fig.setAttribute("height", 100);
-                let color = this._chooseColor();
-                this.fig.setAttribute("fill", color);
-                this.aux.appendChild(this.fig);
-                this.fig.addEventListener("mousedown", this._down);
-                this.fig.addEventListener("mouseup", this._up);
-            } else if (shape === "image") {
-                this.fig = document.createElementNS(SVG, "image");
-                this.fig.setAttribute("id", "image");
-                this.fig.setAttribute("width", 100);
-                this.fig.setAttribute("height", 100);
-                this.fig.setAttribute("href","images/procurar.svg");
-                this.fig.setAttribute("preserveAspectRatio", "none");
-                console.log(this.fig);
-                this.aux.appendChild(this.fig);
-                this.fig.addEventListener("mousedown", this._down);
-                this.fig.addEventListener("mouseup", this._up);
-                this.fig.setAttribute("fill","#ffffff");
-            }
-            this.fig.setAttribute("opacity",0.8);
+            this.fig = document.createElementNS(SVG, "image");
+            this.fig.setAttribute("id", shape);
+            this.fig.setAttribute("width", 100);
+            this.fig.setAttribute("height", 100);
+            this.fig.setAttribute("href","images/"+shape+".svg");
+            this.fig.setAttribute("preserveAspectRatio", "none");
+            console.log(this.fig);
+            this.aux.appendChild(this.fig);
+            this.fig.addEventListener("mousedown", this._down);
+            this.fig.addEventListener("mouseup", this._up);
+            this.fig.setAttribute("fill","#ffffff");
+            this.fig.setAttribute("opacity",0.5);
         }
 
      }
 
      start() {
-        MessageBus.ext.subscribe("control/create/circle", this._createCircle);
-        MessageBus.ext.subscribe("control/create/square", this._createSquare);
-         MessageBus.ext.subscribe("control/create/image", this._createImage);
+        MessageBus.ext.subscribe("control/create",this._createImage);
         Movel.area.setAttribute("id", "area");
         Movel.area.setAttribute("width", "100%");
         Movel.area.setAttribute("height", "100%");
         let div = document.querySelector(".main");
         div.appendChild(Movel.area);
     }
-
-    _createCircle() {
-        this.circle = new Movel("circle");
-    }
-    _createSquare(){
-        this.square = new Movel("square");
-    }
     _createImage() {
-        this.square = new Movel("image");
+        let select = document.querySelector("#choice");
+        let chosen = select.selectedIndex;
+        console.log(select.selectedIndex);
+        let options = select.options;
+        let optionChosen;
+        if(chosen !== undefined)
+            optionChosen = options[chosen];
+        console.log(optionChosen.getAttribute("value"));
+        this.square = new Movel(optionChosen.getAttribute("value"));
     }
 
     _areaup(event){
+        console.log("entrei no areaup");
+        
         if(this.controlDown){
             this.resizeBR = false;
+            this.resizeTL = false;
+            this.resizeTR = false;
+            this.resizeBL = false;
         }
         if(this.resizeBL || this.resizeBR || this.resizeTL || this.resizeTR){
     
@@ -158,13 +136,19 @@ class Movel{
         this.resizeTL = false;
         this.resizeTR = false;
         this.resizeBL = false;
+        this.follow = false;
+        console.log("clique " + event.y);
+        
     }
-    _up(event) {
+    _up(event) {                                     //sepa nao precisa dessa
+        console.log("entrei no up");
+        
         this.follow = false;
     }
     _down(event) {
         this.follow = true;
-
+        console.log("entrei no don");
+        
         this.growSquareBR.classList.toggle("visible");
         this.growSquareTL.classList.toggle("visible");
         this.growSquareBL.classList.toggle("visible");
@@ -172,8 +156,12 @@ class Movel{
 
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
+        console.log("dx " + this.position.dx + " dy " + this.position.dy);
+
     }
+
     _move(event) {
+        
         let widthSquare;
         let heightSquare;
 
@@ -185,48 +173,41 @@ class Movel{
         else{
             this.controlDown = false;
         }
-
-
-        if (this.follow && !this.resizeBR && !this.resizeTL) {
+        
+        if (this.follow && !this.resizeBR && !this.resizeTL && !this.resizeBL && !this.resizeTR) {
+            console.log("hdfugdf");
+            
             if(event.x < 0){
                 event.x = 0;
             }
             if(event.y < 0){
                 event.y = 0;
             }
+
+            
             this.position.tx = event.x - this.position.dx;
             this.position.ty = event.y - this.position.dy;
+
+            console.log("dx no move " + this.position.dx + " eventx "+ event.x);
+            
+            //console.log("transform no move: " + this.position.tx + " " + this.position.ty);
+            
             this.group.setAttribute("transform","translate(" + (this.position.tx) + "," + (this.position.ty) + ")");            
         }
-        else if (this.resizeBR){
+        else if(this.resizeBR){
 
             let squareSizeX = parseInt(event.x) - this.position.tx;
             let squareSizeY = parseInt(event.y) - this.position.ty - offsets.bottom; //neww
-            
+
             if(squareSizeX>=0 && squareSizeY>=0){
                 if(this.controlDown===false){
-                    this.fig.setAttribute("preserveAspectRatio", "none");}
+                    this.fig.setAttribute("preserveAspectRatio", "none");
+                }
                 if(this.controlDown===true){
                     this.fig.setAttribute("preserveAspectRatio", "xMidYMid meet");
                 }
-                if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image"){
                     this.fig.setAttribute("width",squareSizeX);
                     this.fig.setAttribute("height",squareSizeY);
-                }
-                else{
-                    let rx = parseInt(this.fig.getAttribute("rx"));
-                    let ry = parseInt(this.fig.getAttribute("ry"));
-                    let cx = parseInt(this.fig.getAttribute("cx"));
-                    let cy = parseInt(this.fig.getAttribute("cy"));
-
-                    let flagx = rx<=squareSizeX/2 ? 1 : -1;
-                    let flagy = ry<=squareSizeY/2 ? 1 : -1;
-
-                    this.fig.setAttribute("rx", squareSizeX/2);
-                    this.fig.setAttribute("ry", squareSizeY/2);
-                    this.fig.setAttribute("cx", parseInt(cx) + flagx*Math.abs(rx - squareSizeX/2));
-                    this.fig.setAttribute("cy", parseInt(cy) + flagy*Math.abs(ry - squareSizeY/2));
-                }
                     this.growSquareBR.setAttribute("x", squareSizeX);
                     this.growSquareBR.setAttribute("y", squareSizeY);
                     this.growSquareTL.setAttribute("x", 1);
@@ -235,37 +216,35 @@ class Movel{
                     this.growSquareBL.setAttribute("y", squareSizeY);
                     this.growSquareTR.setAttribute("x", squareSizeX);
                     this.growSquareTR.setAttribute("y", 1);
+                
             }
         }
 
         else if(this.resizeTL){
-            if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image"){
-                widthSquare = parseInt(this.fig.getAttribute("width"));
-                heightSquare = parseInt(this.fig.getAttribute("height"));
-            }else{
-                widthSquare = parseInt(this.fig.getAttribute("rx"));
-                heightSquare = parseInt(this.fig.getAttribute("ry"));
-            }           
+            widthSquare = parseInt(this.fig.getAttribute("width"));
+            heightSquare = parseInt(this.fig.getAttribute("height"));      
             let squareSizeX;
             let squareSizeY;
 
-            squareSizeX = (this.position.tx + widthSquare) - event.x;
-            squareSizeY = (this.position.ty + heightSquare) - event.y;
+            squareSizeX = (this.position.tx + widthSquare) - parseInt(event.x);
+            squareSizeY = (this.position.ty + heightSquare) - parseInt(event.y);
 
+            
+            console.log("Posicao mouse " + event.x + " " + event.y);
+            console.log("tx e ty " + this.position.tx + " " + this.position.ty);
+            
+            console.log("altura " + heightSquare);
+            
 
             if(squareSizeX >=0 && squareSizeY >= 0){
                 if(this.controlDown===false){
+                    this.fig.setAttribute("preserveAspectRatio", "none");
                     this.position.tx = event.x;
                     this.position.ty = event.y;
-                    this.group.setAttribute("transform","translate(" + event.x + "," + event.y + ")");    
-                    if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image"){
-                        this.fig.setAttribute("width",squareSizeX);
-                        this.fig.setAttribute("height",squareSizeY);
-                    } else{
-                        this.fig.setAttribute("rx", squareSizeX);
-                        this.fig.setAttribute("ry", squareSizeY);
-                    }
-                    
+                    this.group.setAttribute("transform","translate(" + event.x + "," + (event.y - offsets.bottom) + ")");    
+                    this.fig.setAttribute("width",squareSizeX);
+                    this.fig.setAttribute("height",squareSizeY);
+                
                     this.growSquareBR.setAttribute("x", squareSizeX -5);
                     this.growSquareBR.setAttribute("y", squareSizeY -5);
                     this.growSquareTL.setAttribute("x", 0);
@@ -279,11 +258,9 @@ class Movel{
         }
 
         else if(this.resizeTR){
-            if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image") {
-                heightSquare = parseInt(this.fig.getAttribute("height")); 
-            }else{
-                heightSquare = parseInt(this.fig.getAttribute("ry"));
-            }          
+            heightSquare = parseInt(this.fig.getAttribute("height")); 
+            console.log("Altura " + heightSquare);
+            
             let squareSizeX;
             let squareSizeY;
 
@@ -292,17 +269,13 @@ class Movel{
 
             if(squareSizeX >=0 && squareSizeY >= 0){
                 if(this.controlDown===false){
-
+                    this.fig.setAttribute("preserveAspectRatio", "none");
                     this.position.ty = event.y;
-                    this.group.setAttribute("transform","translate(" + this.position.tx + "," + event.y + ")");//tx doesn't change here
-                    if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image"){
+                    let newYOrigin = event.y - offsets.bottom;
+                    this.group.setAttribute("transform","translate(" + this.position.tx + "," + newYOrigin + ")");//tx doesn't change here
                     this.fig.setAttribute("width",squareSizeX);
+                    //squareSizeY += offsets.bottom;
                     this.fig.setAttribute("height",squareSizeY);
-                    }else{
-                        this.fig.setAttribute("rx", squareSizeX);
-                        this.fig.setAttribute("ry", squareSizeY);
-                    }
-                    
                     this.growSquareBR.setAttribute("x", squareSizeX -5);
                     this.growSquareBR.setAttribute("y", squareSizeY -5);
                     this.growSquareTL.setAttribute("x", 0);
@@ -311,15 +284,14 @@ class Movel{
                     this.growSquareBL.setAttribute("y", squareSizeY - 5);
                     this.growSquareTR.setAttribute("x", squareSizeX - 5);
                     this.growSquareTR.setAttribute("y", 0);
+
+                    console.log("transform no TR: " + this.position.tx + " " + this.position.ty);
+
                 }
             }
         }
         else if(this.resizeBL){
-            if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image") {
-                widthSquare = parseInt(this.fig.getAttribute("width"));
-            }else{
-                widthSquare = parseInt(this.fig.getAttribute("rx"));
-            }
+            widthSquare = parseInt(this.fig.getAttribute("width"));
             let squareSizeX;
             let squareSizeY;
 
@@ -328,17 +300,11 @@ class Movel{
 
             if(squareSizeX >=0 && squareSizeY >= 0){
                 if(this.controlDown===false){
-
+                    this.fig.setAttribute("preserveAspectRatio", "none");
                     this.position.tx = event.x;
                     this.group.setAttribute("transform","translate(" + event.x + "," + this.position.ty + ")");//ty doesn't change here
-                    if (this.fig.getAttribute("id") === "square" || this.fig.getAttribute("id") === "image"){
-                        this.fig.setAttribute("width",squareSizeX);
-                        this.fig.setAttribute("height",squareSizeY);
-                    }else{
-                        this.fig.setAttribute("rx", squareSizeX);
-                        this.fig.setAttribute("ry", squareSizeY);
-                    }
-                    
+                    this.fig.setAttribute("width",squareSizeX);
+                    this.fig.setAttribute("height",squareSizeY);
                     this.growSquareBR.setAttribute("x", squareSizeX -5);
                     this.growSquareBR.setAttribute("y", squareSizeY -5);
                     this.growSquareTL.setAttribute("x", 0);
