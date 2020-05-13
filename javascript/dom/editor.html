@@ -26,9 +26,11 @@
 
    <script type="text/javascript"  src="src/editor.js"></script>
    <script type="text/javascript" src = "src/annotation.js"></script>
+   <script type="text/javascript" src = "src/imageGroup.js"></script>
    <script>
        function start(){
-           Movel.instance.start();
+           /*Movel.instance.start();*/
+           let group = new ImageGroup();
            Annotation.instance.start();
        }
    </script>
@@ -103,6 +105,8 @@
     <dcc-trigger label = "Create" action = "control/create">
     </dcc-trigger>
     <dcc-trigger label = "Anotate" action = "control/annotate"></dcc-trigger>
+    <dcc-trigger label = "Group" action = "control/group">
+    </dcc-trigger>
     </div>
     <div class="vertical-menu">
         <select name="type" id="typeChoice">

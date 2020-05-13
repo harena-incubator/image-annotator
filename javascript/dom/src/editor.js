@@ -10,9 +10,10 @@ class Movel{
         this._growTL = this._growTL.bind(this);
         this._growTR = this._growTR.bind(this);
         this._growBL = this._growBL.bind(this);
-        this._createImage = this._createImage.bind(this);
-        this.start = this.start.bind(this);
+        /*this._createImage = this._createImage.bind(this);*/
+        /*this.start = this.start.bind(this);*/
         if(shape !== undefined){
+            this.selected = false;
             this.position = {
                 "dx": 0,
                 "dy": 0,
@@ -96,7 +97,7 @@ class Movel{
 
      }
 
-     start() {
+     /*start() {
         MessageBus.ext.subscribe("control/create",this._createImage);
         Movel.area.setAttribute("id", "area");
         Movel.area.setAttribute("width", "100%");
@@ -114,7 +115,7 @@ class Movel{
             optionChosen = options[chosen];
         console.log(optionChosen.getAttribute("value"));
         this.square = new Movel(optionChosen.getAttribute("value"));
-    }
+    }*/
 
     _areaup(event){
         console.log("entrei no areaup");
@@ -153,6 +154,7 @@ class Movel{
         this.growSquareTL.classList.toggle("visible");
         this.growSquareBL.classList.toggle("visible");
         this.growSquareTR.classList.toggle("visible");
+        this.selected = not (this.selected);
 
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
@@ -341,8 +343,8 @@ class Movel{
     }  
 }
 
-(function() {
+/*(function() {
     Movel.instance = new Movel();
     Movel.area = document.createElementNS(SVG, "svg");
-})();
+})();*/
    
