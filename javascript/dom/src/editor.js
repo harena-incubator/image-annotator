@@ -155,6 +155,7 @@ class Movel{
         this.growSquareBL.classList.toggle("visible");
         this.growSquareTR.classList.toggle("visible");
         this.selected =  !(this.selected);
+        console.log(this.selected);
 
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
