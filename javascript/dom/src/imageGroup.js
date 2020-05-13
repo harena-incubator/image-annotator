@@ -1,11 +1,13 @@
-const SVG = 'http://www.w3.org/2000/svg';
+
 class ImageGroup{
     constructor(group){
-        if(group){
+        this.group;
+        this.secondary;
+        if(group !== undefined){
             this.group = group;
             this.secondary = true;
         } else{
-            this.group = {}
+            this.group = [];
             this.secondary = false;
             Movel.area = document.createElementNS(SVG, "svg");
             MessageBus.ext.subscribe("control/create",this._createImage);
@@ -15,25 +17,29 @@ class ImageGroup{
             Movel.area.setAttribute("height", "100%");
             let div = document.querySelector(".main");
             div.appendChild(Movel.area);
+            console.log(this.group);
+            console.log("aaaa\n");
         }
-        //this._createImage = this._createImage.bind(this);
+        this._createImage = this._createImage.bind(this);
         this.selected = false;
     }
     _createImage() {
+        console.log(this);
         let select = document.querySelector("#choice");
         let chosen = select.selectedIndex;
-        console.log(select.selectedIndex);
+        //console.log(select.selectedIndex);
         let options = select.options;
         let optionChosen;
         if(chosen !== undefined)
             optionChosen = options[chosen];
-        console.log(optionChosen.getAttribute("value"));
+        //console.log(optionChosen.getAttribute("value"));
         let square = new Movel(optionChosen.getAttribute("value"));
+        console.log(this.group);
         this.group.push(square);
         console.log("batata frita");
     }
     _groupate(){
-        let newGroup = {};
+        let newGroup = [];
         let newGroupOb;
         for (let i = 0; i < this.group.length; i++){
             if (((this.group)[i]).selected){

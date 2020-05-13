@@ -87,7 +87,7 @@ class Movel{
             this.fig.setAttribute("height", 100);
             this.fig.setAttribute("href","images/"+shape+".svg");
             this.fig.setAttribute("preserveAspectRatio", "none");
-            console.log(this.fig);
+            //console.log(this.fig);
             this.aux.appendChild(this.fig);
             this.fig.addEventListener("mousedown", this._down);
             this.fig.addEventListener("mouseup", this._up);
@@ -154,7 +154,7 @@ class Movel{
         this.growSquareTL.classList.toggle("visible");
         this.growSquareBL.classList.toggle("visible");
         this.growSquareTR.classList.toggle("visible");
-        this.selected = not (this.selected);
+        this.selected =  !(this.selected);
 
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
