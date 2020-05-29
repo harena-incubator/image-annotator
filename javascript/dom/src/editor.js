@@ -129,12 +129,13 @@ class Movel{
             this.resizeTR = false;
             this.resizeBL = false;
         }
-        if(this.resizeBL || this.resizeBR || this.resizeTL || this.resizeTR){
-    
-            this.growSquareBR.classList.toggle("visible");
-            this.growSquareTL.classList.toggle("visible");
-            this.growSquareBL.classList.toggle("visible");
-            this.growSquareTR.classList.toggle("visible");
+        if(this.resizeBL || this.resizeBR || this.resizeTL || this.resizeTR ){
+            if(!this.selected){
+                this.growSquareBR.classList.toggle("visible");
+                this.growSquareTL.classList.toggle("visible");
+                this.growSquareBL.classList.toggle("visible");
+                this.growSquareTR.classList.toggle("visible");
+            }
         }
         this.resizeBR = false;
         this.resizeTL = false;
