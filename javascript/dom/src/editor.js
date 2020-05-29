@@ -209,7 +209,9 @@ class Movel{
 
             let squareSizeX = parseInt(event.x) - this.position.tx;
             let squareSizeY = parseInt(event.y) - this.position.ty - offsets.bottom; //neww
-
+            let xProp = squareSizeX/(this.fig.getAttribute("width"));
+            let yProp = squareSizeY/(this.fig.getAttribute("height"));
+            console.log("proporção: " + xProp);
             if(squareSizeX>=0 && squareSizeY>=0){
                 if(this.controlDown===false){
                     this.fig.setAttribute("preserveAspectRatio", "none");
@@ -217,16 +219,20 @@ class Movel{
                 if(this.controlDown===true){
                     this.fig.setAttribute("preserveAspectRatio", "xMidYMid meet");
                 }
-                    this.fig.setAttribute("width",squareSizeX);
-                    this.fig.setAttribute("height",squareSizeY);
-                    this.growSquareBR.setAttribute("x", squareSizeX);
-                    this.growSquareBR.setAttribute("y", squareSizeY);
-                    this.growSquareTL.setAttribute("x", 1);
-                    this.growSquareTL.setAttribute("y", 1);
-                    this.growSquareBL.setAttribute("x", 1 );
-                    this.growSquareBL.setAttribute("y", squareSizeY);
-                    this.growSquareTR.setAttribute("x", squareSizeX);
-                    this.growSquareTR.setAttribute("y", 1);
+                    if(!(this.groupated)){
+                        this.fig.setAttribute("width",squareSizeX);
+                        this.fig.setAttribute("height",squareSizeY);
+                        this.growSquareBR.setAttribute("x", squareSizeX);
+                        this.growSquareBR.setAttribute("y", squareSizeY);
+                        this.growSquareTL.setAttribute("x", 1);
+                        this.growSquareTL.setAttribute("y", 1);
+                        this.growSquareBL.setAttribute("x", 1 );
+                        this.growSquareBL.setAttribute("y", squareSizeY);
+                        this.growSquareTR.setAttribute("x", squareSizeX);
+                        this.growSquareTR.setAttribute("y", 1);
+                    }else{
+                        this.father.grow(xProp,yProp,0);
+                    }
                 
             }
         }
@@ -239,6 +245,8 @@ class Movel{
 
             squareSizeX = (this.position.tx + widthSquare) - parseInt(event.x);
             squareSizeY = (this.position.ty + heightSquare) - parseInt(event.y);
+            let xProp = squareSizeX/(this.fig.getAttribute("width"));
+            let yProp = squareSizeY/(this.fig.getAttribute("heigth"));
 
             
             console.log("Posicao mouse " + event.x + " " + event.y);
@@ -253,17 +261,21 @@ class Movel{
                     this.position.tx = event.x;
                     this.position.ty = event.y;
                     this.group.setAttribute("transform","translate(" + event.x + "," + (event.y - offsets.bottom) + ")");    
-                    this.fig.setAttribute("width",squareSizeX);
-                    this.fig.setAttribute("height",squareSizeY);
-                
-                    this.growSquareBR.setAttribute("x", squareSizeX -5);
-                    this.growSquareBR.setAttribute("y", squareSizeY -5);
-                    this.growSquareTL.setAttribute("x", 0);
-                    this.growSquareTL.setAttribute("y", 0);
-                    this.growSquareBL.setAttribute("x", 0 );
-                    this.growSquareBL.setAttribute("y", squareSizeY - 5);
-                    this.growSquareTR.setAttribute("x", squareSizeX - 5);
-                    this.growSquareTR.setAttribute("y", 0);
+                    if(!(this.groupated)){
+                        this.fig.setAttribute("width",squareSizeX);
+                        this.fig.setAttribute("height",squareSizeY);
+                    
+                        this.growSquareBR.setAttribute("x", squareSizeX -5);
+                        this.growSquareBR.setAttribute("y", squareSizeY -5);
+                        this.growSquareTL.setAttribute("x", 0);
+                        this.growSquareTL.setAttribute("y", 0);
+                        this.growSquareBL.setAttribute("x", 0 );
+                        this.growSquareBL.setAttribute("y", squareSizeY - 5);
+                        this.growSquareTR.setAttribute("x", squareSizeX - 5);
+                        this.growSquareTR.setAttribute("y", 0);
+                    } else{
+                        this.father.grow(xProp,yProp,1);
+                    }
                 }
             }
         }
@@ -277,6 +289,8 @@ class Movel{
 
             squareSizeX = event.x - this.position.tx;
             squareSizeY = (this.position.ty + heightSquare) - event.y;
+            let xProp = squareSizeX/(this.fig.getAttribute("width"));
+            let yProp = squareSizeY/(this.fig.getAttribute("height"));
 
             if(squareSizeX >=0 && squareSizeY >= 0){
                 if(this.controlDown===false){
@@ -284,17 +298,21 @@ class Movel{
                     this.position.ty = event.y;
                     let newYOrigin = event.y - offsets.bottom;
                     this.group.setAttribute("transform","translate(" + this.position.tx + "," + newYOrigin + ")");//tx doesn't change here
-                    this.fig.setAttribute("width",squareSizeX);
-                    //squareSizeY += offsets.bottom;
-                    this.fig.setAttribute("height",squareSizeY);
-                    this.growSquareBR.setAttribute("x", squareSizeX -5);
-                    this.growSquareBR.setAttribute("y", squareSizeY -5);
-                    this.growSquareTL.setAttribute("x", 0);
-                    this.growSquareTL.setAttribute("y", 0);
-                    this.growSquareBL.setAttribute("x", 0 );
-                    this.growSquareBL.setAttribute("y", squareSizeY - 5);
-                    this.growSquareTR.setAttribute("x", squareSizeX - 5);
-                    this.growSquareTR.setAttribute("y", 0);
+                    if(!(this.selected)){
+                        this.fig.setAttribute("width",squareSizeX);
+                        //squareSizeY += offsets.bottom;
+                        this.fig.setAttribute("height",squareSizeY);
+                        this.growSquareBR.setAttribute("x", squareSizeX -5);
+                        this.growSquareBR.setAttribute("y", squareSizeY -5);
+                        this.growSquareTL.setAttribute("x", 0);
+                        this.growSquareTL.setAttribute("y", 0);
+                        this.growSquareBL.setAttribute("x", 0 );
+                        this.growSquareBL.setAttribute("y", squareSizeY - 5);
+                        this.growSquareTR.setAttribute("x", squareSizeX - 5);
+                        this.growSquareTR.setAttribute("y", 0);
+                    }else{
+                        this.father.grow(xProp,yProp,2);
+                    }
 
                     console.log("transform no TR: " + this.position.tx + " " + this.position.ty);
 
@@ -308,22 +326,28 @@ class Movel{
 
             squareSizeX = (this.position.tx + widthSquare) - event.x;
             squareSizeY = event.y - this.position.ty;
+            let xProp = squareSizeX/(this.fig.getAttribute("width"));
+            let yProp = squareSizeY/(this.fig.getAttribute("width"));
 
             if(squareSizeX >=0 && squareSizeY >= 0){
                 if(this.controlDown===false){
                     this.fig.setAttribute("preserveAspectRatio", "none");
                     this.position.tx = event.x;
                     this.group.setAttribute("transform","translate(" + event.x + "," + this.position.ty + ")");//ty doesn't change here
-                    this.fig.setAttribute("width",squareSizeX);
-                    this.fig.setAttribute("height",squareSizeY);
-                    this.growSquareBR.setAttribute("x", squareSizeX -5);
-                    this.growSquareBR.setAttribute("y", squareSizeY -5);
-                    this.growSquareTL.setAttribute("x", 0);
-                    this.growSquareTL.setAttribute("y", 0);
-                    this.growSquareBL.setAttribute("x", 0 );
-                    this.growSquareBL.setAttribute("y", squareSizeY - 5);
-                    this.growSquareTR.setAttribute("x", squareSizeX - 5);
-                    this.growSquareTR.setAttribute("y", 0);
+                    if(!(this.groupated)){
+                        this.fig.setAttribute("width",squareSizeX);
+                        this.fig.setAttribute("height",squareSizeY);
+                        this.growSquareBR.setAttribute("x", squareSizeX -5);
+                        this.growSquareBR.setAttribute("y", squareSizeY -5);
+                        this.growSquareTL.setAttribute("x", 0);
+                        this.growSquareTL.setAttribute("y", 0);
+                        this.growSquareBL.setAttribute("x", 0 );
+                        this.growSquareBL.setAttribute("y", squareSizeY - 5);
+                        this.growSquareTR.setAttribute("x", squareSizeX - 5);
+                        this.growSquareTR.setAttribute("y", 0);
+                    }else{
+                        this.father.grow(xProp,yProp,3);
+                    }
                 }
             }
         }

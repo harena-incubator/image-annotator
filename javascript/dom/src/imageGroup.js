@@ -72,12 +72,28 @@ class ImageGroup{
         console.log(this.group);
     }
     _move(x,y){
+        let xProp;
         if(this.father !== null){
             this.father._move(x,y);
         } else{
             console.log(this);
             console.log("feijão");
-            this.fig.setAttribute("transform","translate(" + (x) + "," + (y) + ")");
+            let transform = this.fig.getAttribute("transform");
+            console.log(transform);
+            if(transform){
+                if(transform[0] === "s"){
+                    this.fig.setAttribute("transform","translate(" + (x) + "," + (y) + ") " + transform);
+                }else{
+                    let vari = transform.split(" ");
+                    if(vari.length > 1){
+                        this.fig.setAttribute("transform","translate(" + (x) + "," + (y) + ") " + vari[1]);
+                    }else{
+                        this.fig.setAttribute("transform","translate(" + (x) + "," + (y) + ")");
+                    }
+                }
+            }else{
+                this.fig.setAttribute("transform","translate(" + (x) + "," + (y) + ")");
+            }
         }
     }
     getFig(){
@@ -102,6 +118,26 @@ class ImageGroup{
     selecting(){
         for(let i = 0; i < this.group.length;i++){
             (this.group[i]).selecting();
+        }
+    }
+    grow(xProp,yProp,num){
+        let x;
+        let y;
+        if(this.father !== null){
+            this.father.grow(xProp,yProp,num);
+        }else{
+            let transform = this.fig.getAttribute("transform");
+            console.log(transform);
+            if(transform){
+                if(transform[0] === "s"){
+                    this.fig.setAttribute("transform","scale("+ xProp + "," + yProp+")");
+                }else{
+                    let str = transform.split(" ");
+                    this.fig.setAttribute("transform",str[0] + " scale("+ xProp + "," + yProp+")");
+                }
+            }else{
+                this.fig.setAttribute("transform","scale("+ xProp + "," + yProp+")");
+            }
         }
     }
 }
