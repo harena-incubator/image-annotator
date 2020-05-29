@@ -10,6 +10,7 @@ class Movel{
         this._growTL = this._growTL.bind(this);
         this._growTR = this._growTR.bind(this);
         this._growBL = this._growBL.bind(this);
+        this.getFig = this.getFig.bind(this);
         /*this._createImage = this._createImage.bind(this);*/
         /*this.start = this.start.bind(this);*/
         if(shape !== undefined){
@@ -93,6 +94,8 @@ class Movel{
             this.fig.addEventListener("mouseup", this._up);
             this.fig.setAttribute("fill","#ffffff");
             this.fig.setAttribute("opacity",0.5);
+            this.groupated = false;
+            this.father = null;
         }
 
      }
@@ -149,14 +152,15 @@ class Movel{
     _down(event) {
         this.follow = true;
         console.log("entrei no don");
-        
-        this.growSquareBR.classList.toggle("visible");
-        this.growSquareTL.classList.toggle("visible");
-        this.growSquareBL.classList.toggle("visible");
-        this.growSquareTR.classList.toggle("visible");
-        this.selected =  !(this.selected);
-        console.log(this.selected);
-
+        if (!this.groupated){
+            this.growSquareBR.classList.toggle("visible");
+            this.growSquareTL.classList.toggle("visible");
+            this.growSquareBL.classList.toggle("visible");
+            this.growSquareTR.classList.toggle("visible");
+            this.selected =  !(this.selected);
+        }else{
+            this.father.select();
+        }
         this.position.dx = event.x - this.position.tx;
         this.position.dy = event.y - this.position.ty;
         console.log("dx " + this.position.dx + " dy " + this.position.dy);
@@ -194,8 +198,11 @@ class Movel{
             console.log("dx no move " + this.position.dx + " eventx "+ event.x);
             
             //console.log("transform no move: " + this.position.tx + " " + this.position.ty);
-            
-            this.group.setAttribute("transform","translate(" + (this.position.tx) + "," + (this.position.ty) + ")");            
+            if(this.groupated){
+                this.father._move(this.position.tx,this.position.ty);
+            }else{
+                this.group.setAttribute("transform","translate(" + (this.position.tx) + "," + (this.position.ty) + ")");  
+            }          
         }
         else if(this.resizeBR){
 
@@ -342,6 +349,16 @@ class Movel{
         }
         return color;
     }  
+    getFig(){
+        return this.group;
+    }
+    selecting(){
+        this.growSquareBR.classList.toggle("visible");
+        this.growSquareTL.classList.toggle("visible");
+        this.growSquareBL.classList.toggle("visible");
+        this.growSquareTR.classList.toggle("visible");
+        this.selected =  !(this.selected);
+    }
 }
 
 /*(function() {
