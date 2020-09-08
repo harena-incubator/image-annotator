@@ -21,7 +21,7 @@ class ImageGroup{
             Movel.area = document.createElementNS(SVG, "svg");
             MessageBus.ext.subscribe("control/create",this._createImage);
             MessageBus.ext.subscribe("control/group",this._groupate);
-            Movel.area.setAttribute("id", "area");
+            Movel.area.setAttribute("id", "canvas");
             Movel.area.setAttribute("width", "100%");
             Movel.area.setAttribute("height", "100%");
             let div = document.querySelector(".main");

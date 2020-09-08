@@ -1,0 +1,73 @@
+[ {
+  "@id" : "http://purl.org/dc/elements/1.1/subject",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#ControlledVocabulary"
+  } ]
+}, {
+  "@id" : "http://purl.org/dc/elements/1.1/title",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_elements.rdf"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#ControlledVocabulary",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#MeSH",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#ControlledVocabulary" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumID",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumSVG",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#baseSVG" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumSVG"
+  } ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#sectionID" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumID"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumTextoLivre",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumaAnotacao",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation" ],
+  "http://purl.org/dc/elements/1.1/subject" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#MeSH"
+  } ],
+  "http://purl.org/dc/elements/1.1/title" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumTextoLivre"
+  } ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#baseSVG" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumSVG"
+  } ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#sectionID" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#algumID"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#baseSVG",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#sectionID",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation"
+  } ]
+} ]

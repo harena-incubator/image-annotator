@@ -4,12 +4,14 @@ class Annotation{
         this.start = this.start.bind(this);
         this._annotate = this._annotate.bind(this);
         this._choosing = this._choosing.bind(this);
+        this._save = this._save.bind(this);
         this.clicked = false;
         this.first = 1;
     }
     start(){
         console.log("cheguei");
         MessageBus.ext.subscribe("control/annotate",this._annotate);
+        MessageBus.ext.subscribe("control/save",this._save);
         this.menu = document.querySelector(".vertical-menu");
         this.select = document.querySelector("#typeChoice");
         this.select.addEventListener("change",this._choosing);
@@ -66,6 +68,15 @@ class Annotation{
             this.menu.appendChild(this.formDiv);
         }
         this.menu.appendChild(this.button);
+    }
+    _save(){
+        let canva = document.querySelector("#canvas");
+        let serializer = new XMLSerializer();
+        let strSVG = serializer.serializeToString(canva);
+        console.log(strSVG)
+        let file = new File([strSVG],"svgAnnotation.svg",{type: "text/xml"});
+        //let blob = new Blob([strSVG], { type: "text/xml" });
+
     }
 }
 
