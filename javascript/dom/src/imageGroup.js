@@ -8,6 +8,7 @@ class ImageGroup{
         this._showFather = this._showFather.bind(this);
         this.select = this.select.bind(this);
         this.selecting = this.selecting.bind(this);
+        this.getSelected = this.getSelected.bind(this);
         if(group !== undefined){
             this.group = group;
             this.secondary = true;
@@ -139,5 +140,14 @@ class ImageGroup{
                 this.fig.setAttribute("transform","scale("+ xProp + "," + yProp+")");
             }
         }
+    }
+    getSelected(){
+        let selected = [];
+        for(let i = 0; this.group.length;i++){
+            if (this.group[i].selected){
+                selected.push(this.group[i]);
+            }
+        }
+        return selected
     }
 }

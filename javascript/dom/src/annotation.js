@@ -8,10 +8,11 @@ class Annotation{
         this.clicked = false;
         this.first = 1;
     }
-    start(){
+    start(group){
         console.log("cheguei");
         MessageBus.ext.subscribe("control/annotate",this._annotate);
         MessageBus.ext.subscribe("control/save",this._save);
+        this.group = group;
         this.menu = document.querySelector(".vertical-menu");
         this.select = document.querySelector("#typeChoice");
         this.select.addEventListener("change",this._choosing);
@@ -70,6 +71,7 @@ class Annotation{
         this.menu.appendChild(this.button);
     }
     _save(){
+        let selectedArea = this.group.getSelected();
         let canva = document.querySelector("#canvas");
         let serializer = new XMLSerializer();
         let strSVG = serializer.serializeToString(canva);
