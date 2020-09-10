@@ -7,6 +7,29 @@ class Annotation{
         this._save = this._save.bind(this);
         this.clicked = false;
         this.first = 1;
+        this.AnnotationTemplate = {
+            "@context": {
+                "@vocab": "http://www.w3.org/ns/anno.jsonld",
+                "dc": "http://purl.org/dc/terms/",
+                "svg": "",
+                "title": "dc:title",
+                "subject": "dc:subject"
+            },
+            "target": "svg",
+            "body": []
+        }
+        this.meshTemplate = { 
+            "id": "",
+            "subject": [{
+                "@id": ""
+            }]
+        }
+        this.freeTemplate = {
+            "id": "",
+            "title": [{
+                "@value": ""
+            }]
+        }
     }
     start(group){
         console.log("cheguei");

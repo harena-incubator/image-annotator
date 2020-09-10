@@ -1,6 +1,6 @@
 {
     "@context" : {
-        "@vocab" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema",
+        "@vocab" : "http://www.w3.org/ns/anno.jsonld",
         "dc" : "http://purl.org/dc/terms/",
         "svg" : "",
         "title" : "dc:title",
