@@ -76,7 +76,7 @@ class Annotation{
         let serializer = new XMLSerializer();
         let strSVG = serializer.serializeToString(canva);
         console.log(strSVG)
-        let file = new File([strSVG],"svgAnnotation.svg",{type: "text/xml"});
+        let file = new File([strSVG],"svgAnnotation.svg",{type: "text/svg"});
         //let blob = new Blob([strSVG], { type: "text/xml" });
 
     }

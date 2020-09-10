@@ -1,0 +1,31 @@
+[ {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#eletroAnotado",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#Annotation" ],
+  "http://purl.org/dc/elements/1.1/subject" : [ {
+    "@id" : "http://purl.org/dc/terms/MESH"
+  } ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@value" : "Qualquer coisa"
+  } ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#baseSVG" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#someSVG"
+  } ],
+  "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema#groupID" : [ {
+    "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#someID"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#someID",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#someSVG",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/exempleOntology#someText",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+} ]

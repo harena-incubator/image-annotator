@@ -1,0 +1,22 @@
+{
+    "@context" : {
+        "@vocab" : "http://www.semanticweb.org/gabrieldefreitas/ontologies/2020/8/annotationSchema",
+        "dc" : "http://purl.org/dc/terms/",
+        "svg" : "",
+        "title" : "dc:title",
+        "subject" : "dc:subject"
+    } ,
+    "target" : "svg",
+    "body" : [{ 
+            "id" : "id do grupo",
+            "subject" : [{
+                "@id" : "url termo MESH"
+                }]
+        }, {
+            "id" : "id do grupo 2",
+            "title": [{
+                "@value" : "algum texto"
+            }]
+        }
+    ]
+}
