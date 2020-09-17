@@ -84,6 +84,7 @@ class Movel{
             this.growSquareBL.addEventListener("mouseup", this._areaup);
             this.fig = document.createElementNS(SVG, "image");
             this.fig.setAttribute("id", id);
+            this.id = id;
             this.fig.setAttribute("width", 100);
             this.fig.setAttribute("height", 100);
             this.fig.setAttribute("href","images/"+shape+".svg");

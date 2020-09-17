@@ -1,6 +1,6 @@
 
 class ImageGroup{
-    constructor(group,g){
+    constructor(group,g,id){
         this._createImage = this._createImage.bind(this);
         this._groupate = this._groupate.bind(this);
         this.getFig = this.getFig.bind(this);
@@ -17,6 +17,7 @@ class ImageGroup{
             this.father = null;
             Movel.area.appendChild(this.fig);
             this.selected = true;
+            this.id = id;
         } else{
             this.group = [];
             this.secondary = false;
@@ -53,8 +54,9 @@ class ImageGroup{
     _groupate(){
         let newGroup = [];
         let newGroupOb;
+        let id = this._createId()
         let g = document.createElementNS(SVG,"g");
-        g.setAttribute("id", this._createId())
+        g.setAttribute("id", id)
         g.setAttribute("class","group");
         for (let i = 0; i < this.group.length;){
             if (((this.group)[i]).selected){
@@ -68,7 +70,7 @@ class ImageGroup{
             i++;
         }
         Movel.area.appendChild(g);
-        newGroupOb = new ImageGroup(newGroup,g);
+        newGroupOb = new ImageGroup(newGroup,g,id);
         this._showFather(newGroupOb);
         console.log(newGroupOb);
         this.group.push(newGroupOb);
@@ -145,11 +147,17 @@ class ImageGroup{
     }
     getSelected(){
         let selected = [];
-        for(let i = 0; this.group.length;i++){
-            if (this.group[i].selected){
-                selected.push(this.group[i]);
+        //console.log(this.group);
+        for(let i = 0; i < this.group.length;i++){
+            let fig = this.group[i];
+            if (fig !== undefined){
+                if (fig.selected){
+                    selected.push(this.group[i]);
+                }
             }
+            //console.log("estou num loop infinito");
         }
+        //console.log(selected);
         return selected
     }
     _createId(){

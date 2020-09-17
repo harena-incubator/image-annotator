@@ -7,6 +7,16 @@ class Annotation{
         this._save = this._save.bind(this);
         this.clicked = false;
         this.first = 1;
+        this.vocabulary = [{
+            "name": "Pericardits",
+            "url": "https://www.ncbi.nlm.nih.gov/mesh/68010493"
+        }, {
+               "name" : "Heart failure" ,
+                "url": "https://www.ncbi.nlm.nih.gov/mesh/68054144"
+            }, {
+                "name" : "Arrhythmia",
+                "url": "https://www.ncbi.nlm.nih.gov/mesh/68001145"
+            }];
         this.AnnotationTemplate = {
             "@context": {
                 "@vocab": "http://www.w3.org/ns/anno.jsonld",
@@ -20,15 +30,15 @@ class Annotation{
         }
         this.meshTemplate = { 
             "id": "",
-            "subject": [{
+            "subject": {
                 "@id": ""
-            }]
+            }
         }
         this.freeTemplate = {
             "id": "",
-            "title": [{
+            "title": {
                 "@value": ""
-            }]
+            }
         }
     }
     start(group){
@@ -78,10 +88,10 @@ class Annotation{
             this.menu.removeChild(this.formDiv);
             if(this.first){
                 let option;
-                for (let i = 0; i < Annotation.vocabulary.length;i++){
+                for (let i = 0; i < this.vocabulary.length;i++){
                     option = document.createElement("option");
-                    option.text = Annotation.vocabulary[i];
-                    option.value = Annotation.vocabulary[i].toLowerCase;
+                    option.text = this.vocabulary[i]["name"];
+                    option.value = this.vocabulary[i]["url"].toLowerCase();
                     this.choice.add(option);
                 }
                 this.first = 0;
@@ -98,14 +108,50 @@ class Annotation{
         let canva = document.querySelector("#canvas");
         let serializer = new XMLSerializer();
         let strSVG = serializer.serializeToString(canva);
-        console.log(strSVG)
+        //console.log(strSVG)
         let file = new File([strSVG],"svgAnnotation.svg",{type: "text/svg"});
         //let blob = new Blob([strSVG], { type: "text/xml" });
-
+        this.AnnotationTemplate["@context"]["svg"] = file
+        let annotArea = this.group.getSelected();
+        if (annotArea.length !== 1){
+            alert("Please, chose one area or create a group")
+            //return;
+        } else {
+            let chosen = this.select.selectedIndex;
+            let options = this.select.options;
+            let optionChosen;
+            if (chosen !== undefined)
+                optionChosen = options[chosen];
+            if (optionChosen.value === "vocabulary"){
+                let template = this._copy(this.meshTemplate);
+                let vocabChosen = this.choice.selectedIndex;
+                let vocabOptions = this.choice.options;
+                let vocabOpChosen;
+                if (vocabChosen !== undefined){
+                    vocabOpChosen = vocabOptions[vocabChosen];
+                    template["id"] = annotArea[0]["id"];
+                    template["subject"]["@id"] = vocabOpChosen.value;
+                    this.AnnotationTemplate["body"].push(template);
+                }
+            } else{
+                let template = this._copy(this.freeTemplate);
+                let result = this.input.value;
+                template["id"] = annotArea[0]["id"];
+                template["title"]["@value"] = result;
+                this.AnnotationTemplate["body"].push(template);
+            }
+            let ldString = JSON.stringify(this.AnnotationTemplate,null,2);
+            console.log(ldString);
+            let finalFile = new File([JSON.stringify(this.AnnotationTemplate)], "annotation.jsonld", { type: "text/jsonld" });
+        }
+        return;
+    }
+    _copy(obj){
+        let copy = JSON.parse(JSON.stringify(obj));
+        return copy
     }
 }
 
 (function() {
     Annotation.instance = new Annotation();
-    Annotation.vocabulary = ["Pericardits", "Heart attack","Arrhythmia"];
 })();
