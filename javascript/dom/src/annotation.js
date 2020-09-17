@@ -129,14 +129,14 @@ class Annotation{
                 let vocabOpChosen;
                 if (vocabChosen !== undefined){
                     vocabOpChosen = vocabOptions[vocabChosen];
-                    template["id"] = annotArea[0]["id"];
+                    template["id"] = '#' + annotArea[0]["id"];
                     template["subject"]["@id"] = vocabOpChosen.value;
                     this.AnnotationTemplate["body"].push(template);
                 }
             } else{
                 let template = this._copy(this.freeTemplate);
                 let result = this.input.value;
-                template["id"] = annotArea[0]["id"];
+                template["id"] = '#' + annotArea[0]["id"];
                 template["title"]["@value"] = result;
                 this.AnnotationTemplate["body"].push(template);
             }
