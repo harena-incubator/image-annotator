@@ -1,7 +1,7 @@
 
 const SVG = 'http://www.w3.org/2000/svg';
 class Movel{
-    constructor(shape){
+    constructor(shape, id){
         this._down = this._down.bind(this);
         this._move = this._move.bind(this);
         this._up = this._up.bind(this);
@@ -83,7 +83,7 @@ class Movel{
             this.growSquareBL.addEventListener("mousedown", this._growBL);
             this.growSquareBL.addEventListener("mouseup", this._areaup);
             this.fig = document.createElementNS(SVG, "image");
-            this.fig.setAttribute("id", shape);
+            this.fig.setAttribute("id", id);
             this.fig.setAttribute("width", 100);
             this.fig.setAttribute("height", 100);
             this.fig.setAttribute("href","images/"+shape+".svg");

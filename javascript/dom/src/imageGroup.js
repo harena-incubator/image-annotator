@@ -9,6 +9,7 @@ class ImageGroup{
         this.select = this.select.bind(this);
         this.selecting = this.selecting.bind(this);
         this.getSelected = this.getSelected.bind(this);
+        this._createId = this._createId.bind(this);
         if(group !== undefined){
             this.group = group;
             this.secondary = true;
@@ -44,7 +45,7 @@ class ImageGroup{
         if(chosen !== undefined)
             optionChosen = options[chosen];
         //console.log(optionChosen.getAttribute("value"));
-        let square = new Movel(optionChosen.getAttribute("value"));
+        let square = new Movel(optionChosen.getAttribute("value"),this._createId());
         this.group.push(square);
         console.log(this.group);
         console.log("batata frita");
@@ -53,6 +54,7 @@ class ImageGroup{
         let newGroup = [];
         let newGroupOb;
         let g = document.createElementNS(SVG,"g");
+        g.setAttribute("id", this._createId())
         g.setAttribute("class","group");
         for (let i = 0; i < this.group.length;){
             if (((this.group)[i]).selected){
@@ -149,5 +151,17 @@ class ImageGroup{
             }
         }
         return selected
+    }
+    _createId(){
+        let d = new Date();
+        let dia = d.getDay().toString();
+        let mes = d.getMonth().toString();
+        let ano = d.getYear().toString();
+        let h = d.getHours().toString();
+        let m = d.getMinutes().toString();
+        let s = d.getSeconds().toString();
+        let chave = Math.floor(Math.random() * (9000 - 1 + 1)) + 1;
+        let strchave = dia + mes + h + m + s + chave.toString();
+        return strchave
     }
 }
